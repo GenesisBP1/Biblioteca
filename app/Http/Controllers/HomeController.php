@@ -3,29 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Libro; // FALTABA ESTA IMPORTACIÓN
-use App\Models\Categorias;
-// use App\Models\User; // Cuando tengas el modelo User
+use App\Models\Libro;
+
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $libros = Libro::paginate(5);
-        // Obtener los libros para mostrarlos en la tabla
-        
-        // Estadísticas para las tarjetas
-        $totalLibros = Libro::count();
-        $librosActivos = Libro::where('estatus', 1)->count();
-        $totalUsuarios = 328; // Temporal, luego usa User::count()
-        $prestamosPendientes = 5; // Temporal, luego con préstamos
-        
-        return view('home.index', compact(
-            'libros', 
-            'totalLibros', 
-            'librosActivos', 
-            'totalUsuarios', 
-            'prestamosPendientes'
-        ));
+        $user = auth()->user();
+
+        if ($user->user_type === 'admin') {
+            $libros = Libro::paginate(5);
+
+            return view('home.index', compact('libros'));
+        } else {
+            return view('home.index_user');
+        }
     }
 }

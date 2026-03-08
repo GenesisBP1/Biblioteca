@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\LibrosController;
+use App\Http\Controllers\UsuariosController;
+use Illuminate\Container\Attributes\Auth;
 
 
 Route::get('/', function () {
@@ -23,6 +25,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+});
+
+Route::middleware(['auth', 'user_type:admin'])->group(function () {
     // Rutas de categorías - COMPLETAS
     Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias.index');
     Route::get('/categorias/create', [CategoriasController::class, 'create'])->name('categorias.create');
@@ -40,4 +45,15 @@ Route::middleware('auth')->group(function () {
     Route::put('/libros/{id}', [LibrosController::class, 'update'])->name('libros.update');
     Route::delete('/libros/{id}', [LibrosController::class, 'destroy'])->name('libros.destroy');
 
+    // Rutas de usuarios (CRUD completo)
+    Route::get('/usuarios', [UsuariosController::class, 'index'])->name('usuarios.index');
+    Route::get('/usuarios/create', [UsuariosController::class, 'create'])->name('usuarios.create');
+    Route::post('/usuarios', [UsuariosController::class, 'store'])->name('usuarios.store');
+    Route::get('/usuarios/{id}/edit', [UsuariosController::class, 'edit'])->name('usuarios.edit');
+    Route::put('/usuarios/{id}', [UsuariosController::class, 'update'])->name('usuarios.update');
+    Route::get('/usuarios/{id}/delete',[UsuariosController::class,'delete_confirm'])->name('usuarios.delete-confirm');
+    Route::delete('/usuarios/{id}', [UsuariosController::class, 'destroy'])->name('usuarios.destroy');});
+
+Route::middleware(['auth', 'user_type:user'])->group(function () {
+    
 });

@@ -192,14 +192,7 @@
                         <i class="fas fa-home text-lg"></i>
                         <span>Inicio</span>
                     </a>
-                    <a href="{{ route ('usuarios.index')}}" class="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all flex items-center gap-2 font-medium">
-                        <i class="fas fa-users text-lg"></i>
-                        <span>Usuarios</span>
-                    </a>
-                    <a href="#" class="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all flex items-center gap-2 font-medium">
-                        <i class="fas fa-book text-lg"></i>
-                        <span>Libros</span>
-                    </a>
+                    
                     <a href="#" class="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all flex items-center gap-2 font-medium">
                         <i class="fas fa-hand-holding text-lg"></i>
                         <span>Préstamos</span>
@@ -266,19 +259,7 @@
                         <span class="font-medium">Inicio</span>
                     </a>
                     
-                    <a href="{{ route('categorias.index') }}" class="menu-item flex items-center gap-3 px-3 py-3 text-gray-700 rounded-xl hover:bg-gray-100 transition-all group">
-                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-green-600 group-hover:bg-green-600 group-hover:text-white transition-all">
-                            <i class="fas fa-tags text-sm"></i>
-                        </div>
-                        <span class="font-medium">Categorias</span>
-                    </a>
-
-                    <a href="#" class="menu-item flex items-center gap-3 px-3 py-3 text-gray-700 rounded-xl hover:bg-gray-100 transition-all group">
-                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-green-600 group-hover:bg-green-600 group-hover:text-white transition-all">
-                            <i class="fas fa-book text-sm"></i>
-                        </div>
-                        <span class="font-medium">Libros</span>
-                    </a>
+                   
                     
                     <a href="#" class="menu-item flex items-center gap-3 px-3 py-3 text-gray-700 rounded-xl hover:bg-gray-100 transition-all group">
                         <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center text-yellow-600 group-hover:bg-yellow-600 group-hover:text-white transition-all">
@@ -287,12 +268,7 @@
                         <span class="font-medium">Préstamos</span>
                     </a>
                     
-                    <a href="{{ route ('usuarios.index') }}" class="menu-item flex items-center gap-3 px-3 py-3 text-gray-700 rounded-xl hover:bg-gray-100 transition-all group">
-                        <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-all">
-                            <i class="fas fa-users text-sm"></i>
-                        </div>
-                        <span class="font-medium">Usuarios</span>
-                    </a>
+                
                 </div>
                 
                 <div class="mt-8 pt-6 border-t border-gray-100">

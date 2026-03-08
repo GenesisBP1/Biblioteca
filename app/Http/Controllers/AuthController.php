@@ -13,6 +13,7 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
+    
     public function register(Request $request)
     {
         // Validar datos de registro
@@ -20,21 +21,24 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            // No necesitas validar password_confirmation explícitamente si usas 'confirmed'
-            'terms' => 'required|accepted' // Si quieres validar términos
+            'terms' => 'required|accepted'
         ]);
-        // Crear usuario
+        
+        // Crear usuario - AÑADE 'user_type' AQUÍ
         $user = User::create([
             'name' => $validateData['name'],
             'email' => $validateData['email'],
-            'password' => Hash::make($validateData['password']), // Usa Hash::make() en lugar de bcrypt()
+            'password' => Hash::make($validateData['password']),
+            'user_type' => 'user', 
         ]);
+        
         // Iniciar sesión automáticamente
         Auth::login($user);
         
         // Redirigir con mensaje de éxito
         return redirect()->route('home')->with('success', '¡Registro exitoso! Bienvenido.');
     }
+    
     public function login(Request $request)
     {
         // Validar datos de login
@@ -42,16 +46,20 @@ class AuthController extends Controller
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
-        $remember = $request->has('remember'); // Para el checkbox "Recordarme"
+        
+        $remember = $request->has('remember');
+        
         // Intentar iniciar sesión
         if (Auth::attempt($credentials, $remember)) {
-            $request->session()->regenerate(); // Previene session fixation
-            return redirect()->intended('home'); // intended() redirige a la URL que el usuario intentaba acceder
+            $request->session()->regenerate();
+            return redirect()->intended('home');
         }
+        
         return back()->withErrors([
             'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
-        ])->onlyInput('email'); // onlyInput() mantiene el email en el campo
+        ])->onlyInput('email');
     }
+    
     public function logout(Request $request)
     {
         Auth::logout();
