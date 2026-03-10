@@ -280,7 +280,7 @@
                         <span class="font-medium">Libros</span>
                     </a>
                     
-                    <a href="#" class="menu-item flex items-center gap-3 px-3 py-3 text-gray-700 rounded-xl hover:bg-gray-100 transition-all group">
+                    <a href="{{route ('prestamos.index')}}" class="menu-item flex items-center gap-3 px-3 py-3 text-gray-700 rounded-xl hover:bg-gray-100 transition-all group">
                         <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center text-yellow-600 group-hover:bg-yellow-600 group-hover:text-white transition-all">
                             <i class="fas fa-hand-holding text-sm"></i>
                         </div>
